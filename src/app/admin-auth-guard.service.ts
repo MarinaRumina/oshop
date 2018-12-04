@@ -10,13 +10,12 @@ import { AppUser } from './models/app.user';
   providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
-  path: import("c:/Marina-docs/Repos/angular-learning/oshop/node_modules/@angular/router/src/router_state").ActivatedRouteSnapshot[];
-  route: import("c:/Marina-docs/Repos/angular-learning/oshop/node_modules/@angular/router/src/router_state").ActivatedRouteSnapshot;
+  path: import("d:/Projects/angular-udemy/oshop/node_modules/@angular/router/src/router_state").ActivatedRouteSnapshot[];
+  route: import("d:/Projects/angular-udemy/oshop/node_modules/@angular/router/src/router_state").ActivatedRouteSnapshot;
 
   constructor(private auth: AuthService, private userService: UserService) { }
 
   canActivate (): Observable<boolean> {
-    return this.auth.appUser$
-                    .pipe(map((appUser: AppUser) => appUser.isAdmin));
+    return this.auth.appUser$.pipe(map((appUser: AppUser) => appUser.isAdmin));
   }
 }
