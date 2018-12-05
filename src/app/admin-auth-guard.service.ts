@@ -11,16 +11,18 @@ import { AppUser } from './models/app.user';
 })
 export class AdminAuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private userService: UserService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   canActivate (): Observable<boolean> {
-    let isAdm = this.auth.appUser$.pipe(map((appUser: AppUser) => {
+
+    return this.auth.appUser$.pipe(
+      map((appUser: AppUser) => {
         if (appUser.isAdmin) {
           return true;
         }
+        this.router.navigate(['/login']);
         return false;
       })
     );
-    return isAdm;
   }
 }
